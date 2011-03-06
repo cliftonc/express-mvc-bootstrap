@@ -1,0 +1,34 @@
+<html>
+  <head>
+    <title>Sample MVC Application</title>
+    	<link rel="stylesheet" href="/css/style.css" />
+    	<link type="text/css" href="/css/Aristo/jquery-ui-1.8.7.custom.css" rel="stylesheet" />	
+		<script type="text/javascript" src="/js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.8.10.custom.min.js"></script>
+		<script type="text/javascript">
+			$(function(){
+		
+				// Style default buttons
+				// TODO: Move this into an application js library
+				$(".button-edit").button({ icons: {	primary: 'ui-icon-wrench' }	});
+				$(".button-delete").button({ icons: { primary: 'ui-icon-trash' } });
+				$(".button-home").button({ icons: {	primary: 'ui-icon-home'	} });
+				$(".button-submit").button({ icons: { primary: 'ui-icon-disk' } });
+				$(".button-cancel").button({ icons: {primary: 'ui-icon-close' } });
+				
+			});
+			
+		</script>
+  </head>
+  <body>  	
+  	<div id="container">
+	  	<div id="header">
+			<h1>Node.js + ExpressJs + Mongoose</h1>
+  			<h2>Simple Application Template</h2>
+		</div>
+		<div id="content">
+    		<%- body %>
+    	</div>		
+    </div>
+  </body>
+</html>
