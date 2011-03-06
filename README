@@ -1,6 +1,7 @@
 I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
-* http://nodejs.org/">Node.js</a>: Amazing javascript asynchronous IO library, install manually.
-* http://www.mongodb.org/">MongoDB</a>: NoSQL Database, install manually.
+
+* http://nodejs.org/ Node.js: Amazing javascript asynchronous IO library, install manually.
+* http://www.mongodb.org MongoDB: NoSQL Database, install manually.
 * http://npmjs.org/ NPM: Node package manager, used to install:
 * http://expressjs.com/ Express: Application Framework for Node.js
 * http://mongoosejs.com/ Mongoose: Node.JS ORM for Mongo
@@ -8,3 +9,10 @@ I built this application to create a template MVC 'style' app that I could then 
 * http://jquery.com/ jQuery: Javascript Library
 * http://jqueryui.com/ jQuery UI: UI Library
 * http://taitems.tumblr.com/post/482577430/introducing-aristo-a-jquery-ui-theme jQuery Aristo Template: Fantastic looking jQuery UI Template.
+
+TODO: 
+
+* I need to add a proper github pages site for it, with a tutorial of how to use it to setup a new application.
+* EJS is currently embedded in the lib folder, this should either be a submodule or installed via npm (didn't work for me via npm)
+* I'd like to write scripts that can be run to enable creation of 'template' Models, Controllers & Views (like Grails)
+* Write some amazing apps?!
