@@ -1,4 +1,6 @@
-I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
+I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  I used the excellent examples in the main Express github (https://github.com/visionmedia/express) repository, specifically the MVC example, as the starting point.  I have however changed it quite substantially to make it clearer and remove some of the 'magic' that confused me at first when learning.  If you are familiar with other MVC frameworks hopefully my file structure makes some sense.  
+
+It depends on:
 
 You need to manually install: 
 
