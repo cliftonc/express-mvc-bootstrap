@@ -1,16 +1,10 @@
-<p>I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
-	<ul>
-		<li><a target="_new" href="http://nodejs.org/">Node.js</a>: Amazing javascript asynchronous IO library, install manually.</li>
-		<li><a target="_new" href="http://www.mongodb.org/">MongoDB</a>: NoSQL Database, install manually.</li>
-		<li><a target="_new" href="http://npmjs.org/">NPM</a>: Node package manager, used to install:
-			<ul>
-				<li><a target="_new" href="http://expressjs.com/">Express</a>: Application Framework for Node.js</li>
-				<li><a target="_new" href="http://mongoosejs.com/">Mongoose</a>: Node.JS ORM for Mongo</li>
-				<li><a target="_new" href="http://embeddedjs.com/">EJS</a>: Embedded Javascript Templating Library</li>
-			</ul>
-		</li>
-		<li><a target="_new" href="http://jquery.com/">jQuery</a>: Javascript Library</li>
-		<li><a target="_new" href="http://jqueryui.com/">jQuery UI</a>: UI Library</li>
-		<li><a target="_new" href="http://taitems.tumblr.com/post/482577430/introducing-aristo-a-jquery-ui-theme">jQuery Aristo Template</a>: Fantastic looking jQuery UI Template.</li>
-	</ul>
-</p>
+I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
+* http://nodejs.org/">Node.js</a>: Amazing javascript asynchronous IO library, install manually.
+* http://www.mongodb.org/">MongoDB</a>: NoSQL Database, install manually.
+* http://npmjs.org/ NPM: Node package manager, used to install:
+* http://expressjs.com/ Express: Application Framework for Node.js
+* http://mongoosejs.com/ Mongoose: Node.JS ORM for Mongo
+* http://embeddedjs.com/ EJS: Embedded Javascript Templating Library
+* http://jquery.com/ jQuery: Javascript Library
+* http://jqueryui.com/ jQuery UI: UI Library
+* http://taitems.tumblr.com/post/482577430/introducing-aristo-a-jquery-ui-theme jQuery Aristo Template: Fantastic looking jQuery UI Template.
