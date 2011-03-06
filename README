@@ -1,14 +1,29 @@
 I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
 
+You need to manually install: 
+
 * http://nodejs.org/ Node.js: Amazing javascript asynchronous IO library, install manually.
 * http://www.mongodb.org MongoDB: NoSQL Database, install manually.
-* http://npmjs.org/ NPM: Node package manager, used to install:
+* http://npmjs.org/ NPM: Node package manager, used to install the remaining.
+
+And then install via NPM:
+
 * http://expressjs.com/ Express: Application Framework for Node.js
 * http://mongoosejs.com/ Mongoose: Node.JS ORM for Mongo
+
+But I've included in this project:
+
 * http://embeddedjs.com/ EJS: Embedded Javascript Templating Library
 * http://jquery.com/ jQuery: Javascript Library
 * http://jqueryui.com/ jQuery UI: UI Library
 * http://taitems.tumblr.com/post/482577430/introducing-aristo-a-jquery-ui-theme jQuery Aristo Template: Fantastic looking jQuery UI Template.
+
+TO RUN:
+
+* Install all the dependencies above.
+* Clone project somewhere (e.g. /var/www/express-mvc-bootstrap)
+* Run: node app.js
+* Browse http://localhost:3000/
 
 TODO: 
 
