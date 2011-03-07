@@ -24,12 +24,18 @@ TO RUN:
 
 * Install all the dependencies above.
 * Clone project somewhere (e.g. /var/www/express-mvc-bootstrap)
-* Run: node app.js
+* Run: ./bootstrap server
 * Browse http://localhost:3000/
+
+NOTE ON BOOTSTRAP AND SCRIPTS:
+
+* I have now created a simple scripting wrapper, it can be accessed from: ./bootstrap in the base of the application.
+* You can use it to create simple models, controllers and views, based on the templates stored in /scripts/templates.
+* You can also generate-all to rapidly roll out a simple MVC flow to use as a base.
 
 TODO: 
 
 * I need to add a proper github pages site for it, with a tutorial of how to use it to setup a new application.
 * EJS is currently embedded in the lib folder, this should either be a submodule or installed via npm (didn't work for me via npm)
-* I'd like to write scripts that can be run to enable creation of 'template' Models, Controllers & Views (like Grails)
+* DONE - I'd like to write scripts that can be run to enable creation of 'template' Models, Controllers & Views (like Grails)
 * Write some amazing apps?!

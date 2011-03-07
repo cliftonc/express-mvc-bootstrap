@@ -1,25 +1,28 @@
 <h1>Welcome!</h1>
 <p>I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
 	<ul>
-		<li>http://nodejs.org/">Node.js</a>: Amazing javascript asynchronous IO library, install manually.</li>
-		<li>http://www.mongodb.org/">MongoDB</a>: NoSQL Database, install manually.</li>
-		<li>http://npmjs.org/">NPM</a>: Node package manager, used to install:
+		<li><a href="http://nodejs.org/">Node.js</a>: Amazing javascript asynchronous IO library, install manually.</li>
+		<li><a href="http://www.mongodb.org/">MongoDB</a>: NoSQL Database, install manually.</li>
+		<li><a href="http://npmjs.org/">NPM</a>: Node package manager, used to install:
 			<ul>
-				<li>http://expressjs.com/">Express</a>: Application Framework for Node.js</li>
-				<li>http://mongoosejs.com/">Mongoose</a>: Node.JS ORM for Mongo</li>
-				<li>http://embeddedjs.com/">EJS</a>: Embedded Javascript Templating Library</li>
+				<li><a href="http://expressjs.com/">Express</a>: Application Framework for Node.js</li>
+				<li><a href="http://mongoosejs.com/">Mongoose</a>: Node.JS ORM for Mongo</li>
+				<li><a href="http://embeddedjs.com/">EJS</a>: Embedded Javascript Templating Library</li>
 			</ul>
 		</li>
-		<li>http://jquery.com/">jQuery</a>: Javascript Library</li>
-		<li>http://jqueryui.com/">jQuery UI</a>: UI Library</li>
-		<li>http://taitems.tumblr.com/post/482577430/introducing-aristo-a-jquery-ui-theme">jQuery Aristo Template</a>: Fantastic looking jQuery UI Template.</li>
+		<li><a href="http://jquery.com/">jQuery</a>: Javascript Library</li>
+		<li><a href="http://jqueryui.com/">jQuery UI</a>: UI Library</li>
+		<li><a href="http://taitems.tumblr.com/post/482577430/introducing-aristo-a-jquery-ui-theme">jQuery Aristo Template</a>: Fantastic looking jQuery UI Template.</li>
 	</ul>
 </p>
-<p>Try visiting one of the following urls:</p>
-<ul>
-    <li><a href="/users">/users</a></li>
-    <li><a href="/users.json">/users.json</a></li>
-    <li><a href="/accounts">/accounts (404, non existent)</a></li>
-    <li><a href="/users.foo">/users/1.foo (500, unsupported format)</a></li>
-</ul>
+<p>The following controllers are available:</p>
+
+<% if (controllers.length) { %>
+  <ul>
+    <% controllers.forEach(function(controller){ %>
+      <li><a href="/<%= controller %>s"><%= controller %></a></li>
+    <% }) %>
+  </ul>
+<% } %>
+
 <p>Contact me via github : <a href="https://github.com/cliftonc" target="_new">Clifton @ Github</a></p>
