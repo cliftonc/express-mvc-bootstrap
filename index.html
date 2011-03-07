@@ -14,9 +14,9 @@
     }
     #container {
       margin: 0 auto;
-      width: 700px;
+      width: 90%;
     }
-    h1 { font-size: 3.8em; color: #d5d4c3; margin-bottom: 3px; }
+    h1 { font-size: 2.0em; color: #d5d4c3; margin-bottom: 3px; }
     h1 .small { font-size: 0.4em; }
     h1 a { text-decoration: none }
     h2 { font-size: 1.5em; color: #d5d4c3; }
@@ -55,56 +55,56 @@
 	Ensure that you are logged in as the user you want to run node as (e.g. a good idea to create a www-data or node user if you are on a server and want to keep it separate from other processes.)
 	Instructions copied from (https://github.com/joyent/node/wiki/Installation).		
 	<pre>
-		cd /var/www
-		wget http://nodejs.org/dist/node-v0.4.2.tar.gz
-		tar -zxvf node-v0.4.2.tar.gz
-		cd node-v-0.4.2
-		export JOBS=2 # optional, sets number of parallel commands.
-		mkdir ~/local
-		./configure --prefix=$HOME/local/node
-		make
-		make install
-		export PATH=$HOME/local/node/bin:$PATH		
+cd /var/www
+wget http://nodejs.org/dist/node-v0.4.2.tar.gz
+tar -zxvf node-v0.4.2.tar.gz
+cd node-v-0.4.2
+export JOBS=2 # optional, sets number of parallel commands.
+mkdir ~/local
+./configure --prefix=$HOME/local/node
+make
+make install
+export PATH=$HOME/local/node/bin:$PATH		
 	</pre>
 	You should now be able to type:
 	<pre>
-		cliftonc@localhost:/var/www/node-v0.4.2$ node --version
-		v0.4.2		
+cliftonc@localhost:/var/www/node-v0.4.2$ node --version
+v0.4.2		
 	</pre>
 	<h2>Installing NPM</h2>
 	You can install NPM using the following commands:
 	<pre>
-		curl http://npmjs.org/install.sh | sh
+curl http://npmjs.org/install.sh | sh
 	</pre>
 	And then check it via:
 	<pre>
-		npm -version
-		0.3.15
+npm -version
+0.3.15
 	</pre>
 	<h2>Installing Everything Else</h2>
 	<pre>
-		npm install express
-		npm install mongoose
-		npm install ejs
+npm install express
+npm install mongoose
+npm install ejs
 	</pre>
 	<h2>Installing Bootstrap</h2>
 	<pre>
-		cd /var/www
-		git clone git@github.com:cliftonc/express-mvc-bootstrap.git
-		cd express-mvc-bootstrap
-		./bootstrap server				
+cd /var/www
+git clone git@github.com:cliftonc/express-mvc-bootstrap.git
+cd express-mvc-bootstrap
+./bootstrap server				
 	</pre>	
 	<h2>Creating another model, view, controller ...</h2>
 	<pre>		
-		./bootstrap script create-model Group
-		./bootstrap script create-controller Group
-		./bootstrap script create-view Group
-		./bootstrap server
+./bootstrap script create-model Group
+./bootstrap script create-controller Group
+./bootstrap script create-view Group
+./bootstrap server
 	</pre>
 	Or the fast way:
 	<pre>		
-		./bootstrap script generate-all Group
-		./bootstrap server
+./bootstrap script generate-all Group
+./bootstrap server
 	</pre>
 	
     <h2>Authors</h2>
