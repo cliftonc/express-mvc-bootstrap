@@ -1,0 +1,15 @@
+<?
+	var modelVariable = name.toLowerCase();
+	var basePath = name.toLowerCase();
+	var basePathPlural = name.toLowerCase() + 's';
+?>
+<h1>Editing <?= name ?> <%= <?= modelVariable ?>.name %></h1>
+<%- partial('../messages') %>
+<form method="post" action="/<?= modelVariable ?>/<%= <?= modelVariable ?>.id %>">
+  <input type="hidden" name="_method" value="put" />
+  <p>Name: <input type="text" name="<?= modelVariable ?>[name]", value="<%= <?= modelVariable ?>.name %>" /></p>
+  <p>
+  	<button class="button-submit" type="submit" value="Update">Save</button>
+  	<a class="button-cancel" href="/<?= modelVariable ?>/<%= <?= modelVariable ?>.id %>">Cancel</a>
+  </p>
+</form>
