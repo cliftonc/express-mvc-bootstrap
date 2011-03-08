@@ -42,13 +42,13 @@
 <%- partial('../messages') %>
 <table>
 	<tr>
-  		<th>ID</th><td><%- user.id %></td>
+  		<th>ID</th><td><%= user.id %></td>
   	</tr>
   	<tr>
-  		<th>Name</th><td><%- user.name %></td>
+  		<th>Name</th><td><%= user.name %></td>
   	</tr>
   	<tr>
-  		<th>Email</th><td><%- user.email %></td>
+  		<th>Email</th><td><%= user.email %></td>
   	</tr>  	
 </table>
 <a class="button-edit" href="<%= user.id %>/edit" title="Edit user ...">

@@ -17,7 +17,7 @@ var express = require('express');
  * Main Command router
  */
 var appLauncher = {
-					command:'script',
+					command:'server',
 				    server: { port:3000 },
 				    script: { name:'help',
 				    		  params: []
