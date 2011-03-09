@@ -92,19 +92,23 @@ npm install ejs
 cd /var/www
 git clone git@github.com:cliftonc/express-mvc-bootstrap.git
 cd express-mvc-bootstrap
-./bootstrap server				
+sudo npm install		
 	</pre>	
-	<h3>Creating another model, view, controller ...</h3>
+	<h3>Creating an app, model, view, controller ...</h3>
 	<pre>		
-./bootstrap script create-model Group
-./bootstrap script create-controller Group
-./bootstrap script create-view Group
-./bootstrap server
+cd /var/www
+mkdir myApp
+cd myApp
+eb create-app
+eb script create-model Group
+eb script create-controller Group
+eb script create-view Group
+eb
 	</pre>
 	Or the fast way:
 	<pre>		
-./bootstrap script generate-all Group
-./bootstrap server
+eb script generate-all Group
+eb
 	</pre>
 	
     <h3>Authors</h3>
