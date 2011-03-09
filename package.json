@@ -1,0 +1,36 @@
+{
+  "name": "express-mvc-bootstrap",
+  "description": "Express MVC Application Accelerator",
+  "version": "0.1.0",
+  "homepage": "https://cliftonc.github.com/express-mvc-bootstrap",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cliftonc/express-mvc-bootstrap.git"
+  },
+  "main":"bootstrap",
+  "author": "Clifton Cunningham <clifton.cunningham@gmail.com> (cliftoncunningham.co.uk)",  
+  "directories": {
+    "lib": "./lib",
+    "conf": "./conf",    
+    "models": "./models",
+    "controllers": "./controllers",
+    "views": "./views",
+    "public": "./public",
+    "scripts": "./scripts",
+    "utils": "./utils"    
+  },
+  "repository" :
+             { "type" : "git"
+             , "url" : "https://github.com/cliftonc/express-mvc-bootstrap.git"
+  },  
+  "engines" : { "node" : "0.4 || 0.5" },
+  "dependencies" : { 
+             "express" : ">=2.0.0beta",
+             "connect" : ">=1.0.3",
+             "ejs" : ">=0.3.1",
+             "socket.io" : ">=0.6.16",
+             "mongoose" : ">=1.1.3"            
+  },
+  "bin": { "eb": "./bootstrap" }
+                
+}

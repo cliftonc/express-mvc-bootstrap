@@ -1,4 +1,6 @@
-I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  I used the excellent examples in the main Express github (https://github.com/visionmedia/express) repository, specifically the MVC example, as the starting point.  I have however changed it quite substantially to make it clearer and remove some of the 'magic' that confused me at first when learning.  If you are familiar with other MVC frameworks hopefully my file structure makes some sense.  
+I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  I used the excellent examples in the main Express github (https://github.com/visionmedia/express) repository, specifically the MVC example, as the starting point.  I have however changed it quite substantially to make it clearer and remove some of the 'magic' that confused me at first when learning.  If you are familiar with other MVC frameworks hopefully my file structure makes some sense.
+
+NOTE: I've now configured this to work as an npm package, but can't npm publish (still trying to figure out why it won't let me auth).  You can follow the  commands below, but then run 'npm install' in the root.  This will then install it as a library, and give you access to the scripts via the command 'eb' (express bootstrap).  
 
 It depends on:
 
@@ -24,12 +26,12 @@ TO RUN:
 
 * Install all the dependencies above.
 * Clone project somewhere (e.g. /var/www/express-mvc-bootstrap)
-* Run: ./bootstrap server
+* Run: ./bootstrap
 * Browse http://localhost:3000/
 
 NOTE ON BOOTSTRAP AND SCRIPTS:
 
-* I have now created a simple scripting wrapper, it can be accessed from: ./bootstrap in the base of the application.
+* I have now created a simple scripting wrapper, it can be accessed from: ./bootstrap script in the base of the application.
 * You can use it to create simple models, controllers and views, based on the templates stored in /scripts/templates.
 * You can also generate-all to rapidly roll out a simple MVC flow to use as a base.
 

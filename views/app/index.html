@@ -1,3 +1,12 @@
+<script src="http://localhost:3000/socket.io/socket.io.js"></script> 
+<script> 
+ var socket = new io.Socket("localhost"); 
+ socket.connect();
+ socket.on('connect', function(){ alert('connect');
+	}); 
+ socket.on('message', function(){ alert('message'); }) 
+ socket.on('disconnect', function(){ alert('disconnect'); }); 
+</script> 
 <h1>Welcome!</h1>
 <p>I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
 	<ul>

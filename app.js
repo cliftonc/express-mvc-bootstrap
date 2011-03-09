@@ -4,13 +4,15 @@
 var fs = require('fs'),express = require('express'),
 	mongoose = require('mongoose');
 
+var path = __dirname;
+
 /**
  * Initial bootstrapping
  */
 exports.boot = function(app){
   
-  // Import configuration
-  require('./conf/configuration.js')(app,express);
+   // Import configuration
+  require(path + '/conf/configuration.js')(app,express);
   
   // Bootstrap application
   bootApplication(app);
@@ -34,7 +36,7 @@ function bootApplication(app) {
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'helloworld' }));
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(path + '/public'));
 
   // Example 500 page
   app.error(function(err, req, res){
@@ -47,7 +49,7 @@ function bootApplication(app) {
   });
 
   // Setup ejs views as default, with .html as the extension
-  app.set('views', __dirname + '/views');
+  app.set('views', path + '/views');
   app.register('.html', require('ejs'));
   app.set('view engine', 'html');
 
@@ -77,7 +79,7 @@ function bootApplication(app) {
 //Bootstrap models 
 function bootModels(app) {
 	
-  fs.readdir(__dirname + '/models', function(err, files){
+  fs.readdir(path + '/models', function(err, files){
     if (err) throw err;
     files.forEach(function(file){
       bootModel(app, file);
@@ -91,7 +93,7 @@ function bootModels(app) {
 
 // Bootstrap controllers
 function bootControllers(app) {
-  fs.readdir(__dirname + '/controllers', function(err, files){
+  fs.readdir(path + '/controllers', function(err, files){
     if (err) throw err;
     files.forEach(function(file){
     	bootController(app, file);    		
@@ -104,7 +106,7 @@ function bootControllers(app) {
 function bootModel(app, file) {
 
     var name = file.replace('.js', ''),
-    	schema = require('./models/'+ name);				// Include the mongoose file        
+    	schema = require(path + '/models/'+ name);				// Include the mongoose file        
     
 }
 
@@ -112,7 +114,7 @@ function bootModel(app, file) {
 function bootController(app, file) {
 	
 	var name = file.replace('.js', ''),
-    	controller = __dirname + '/controllers/' + name,   // full controller to include
+    	controller = path + '/controllers/' + name,   // full controller to include
     	template = name.replace('Controller','').toLowerCase();									// template folder for html - remove the ...Controller part.
 	
 	// Include the controller
