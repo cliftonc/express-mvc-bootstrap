@@ -5,12 +5,16 @@ var fs = require('fs'),express = require('express'),
 	mongoose = require('mongoose');
 
 var path = __dirname;
+var app;
 
 /**
  * Initial bootstrapping
  */
-exports.boot = function(app){
+exports.boot = function(){
   
+  //Create our express instance
+	app = express.createServer();	
+	
    // Import configuration
   require(path + '/conf/configuration.js')(app,express);
   
@@ -18,6 +22,8 @@ exports.boot = function(app){
   bootApplication(app);
   bootModels(app);
   bootControllers(app);
+  
+  return app;
   
 };
 

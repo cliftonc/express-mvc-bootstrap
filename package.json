@@ -27,6 +27,7 @@
   "dependencies" : { 
              "express" : ">=2.0.0beta",
              "connect" : ">=1.0.3",
+             "cluster" : ">=0.4.0",
              "ejs" : ">=0.3.1",
              "socket.io" : ">=0.6.16",
              "mongoose" : ">=1.1.3"            
