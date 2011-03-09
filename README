@@ -26,12 +26,15 @@ TO RUN:
 
 * Install all the dependencies above.
 * Clone project somewhere (e.g. /var/www/express-mvc-bootstrap)
-* Run: ./bootstrap
-* Browse http://localhost:3000/
+* Run: npm install
+* Go to a nice clean folder
+* Run 'eb create-app'
+* Run 'eb'
+* browse to http://localhost:3000
 
 NOTE ON BOOTSTRAP AND SCRIPTS:
 
-* I have now created a simple scripting wrapper, it can be accessed from: ./bootstrap script in the base of the application.
+* I have now created a simple scripting wrapper, it can be accessed via 'eb script' once you have installed the library via npm.
 * You can use it to create simple models, controllers and views, based on the templates stored in /scripts/templates.
 * You can also generate-all to rapidly roll out a simple MVC flow to use as a base.
 

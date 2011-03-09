@@ -31,6 +31,6 @@
              "socket.io" : ">=0.6.16",
              "mongoose" : ">=1.1.3"            
   },
-  "bin": { "eb": "./bootstrap" }
+  "bin": { "eb": "./eb" }
                 
 }
