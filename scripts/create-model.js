@@ -5,7 +5,7 @@ var ejs = require('ejs')
 /** 
  * Script to create a default model
  */
-exports.execute = function(params) {
+exports.execute = function(params,appPath) {
 		 
 	if(params.length == 0 ) {
 		console.log("You must specifiy a model name.");
@@ -13,7 +13,7 @@ exports.execute = function(params) {
 	}
 	
 	var modelName = params[0];
-	var modelFile = __dirname + "/../models/" + params[0] + '.js'
+	var modelFile = appPath + "/models/" + params[0] + '.js'
 	var modelTemplate = __dirname + '/templates/create-model.template.ejs';
 		
 	// Check if it already exists

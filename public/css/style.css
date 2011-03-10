@@ -221,6 +221,17 @@ span.pager-page {
 	line-height: 1.25em;	
 }
 
+input.pager-page {
+	display: inline !important; 
+	width: 30px;
+	font-family: Helvetica, Arial, sans-serif;
+	padding: 2px 2px;
+	margin: 3px 3px 3px 3px;
+	color: #454545;	
+	line-height: 1.25em;	
+	clear: none;
+}
+
 a.pager-page {
 	font-family: Helvetica, Arial, sans-serif;
 	padding: 3px 3px;

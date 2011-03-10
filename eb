@@ -1,0 +1,315 @@
+#!/usr/bin/env node
+
+/**
+ * ExpressJs MVC Bootstrap
+ * @Params - cmd - server | script | params
+ */
+ 
+ 
+/**
+ * Framework version.
+ */
+
+var version = '0.1.0';
+ 
+
+/**
+ * Require everything in the library folder
+ */
+require.paths.unshift(__dirname + '/lib');
+
+/**
+ * Explicit module dependencies
+ */
+var express = require('express'), fs = require('fs'), nodepath = require('path'), exec = require('child_process').exec;
+
+/**
+ * Paths
+ **/
+var path = fs.realpathSync('.');
+var bootstrapPath = __dirname;
+
+/**
+ * Main Command router
+ */
+var appLauncher = {
+					command:'server',
+				    server: { port:3000 },
+				    script: { name:'help',
+				    		  params: []
+				    		}
+				   };
+
+for(var i in process.argv) {
+	// Skip the first two - Node and app.js path
+	if(i>1) {		
+		processParam(process.argv[i],i);
+	}	
+}
+
+runLauncher(appLauncher);
+
+/**
+ * Run the launcher
+ * @param appLauncher
+ */
+function runLauncher(appLauncher) {
+	
+	// Always use current directory?
+	console.log('\r\n\x1b[36mLaunching bootstrap from: \x1b[0m ' + path);
+	console.log('\x1b[36mScript directory: \x1b[0m ' + bootstrapPath + '/scripts');	
+	
+	// Check if this is a bootstrap application?
+	if(isLibrary()) {
+		console.log('\x1b[1mDo not run this from the bootstrap library folder, please run from an empty directory or a bootstrapped app, or please run "npm install"\x1b[0m\r\n');		
+		return;
+	}
+	
+	// Check if this is a bootstrap application?
+	if(!isBootstrap() && appLauncher.command != 'create-app') {
+		console.log('\x1b[1mApplication not bootstrapped - you must run:\x1b[0m eb create-app\r\n');
+		return;
+	}
+	
+	switch(appLauncher.command) {
+		case 'server':
+			runServer(appLauncher.server.port);
+			break;
+		case 'script':
+			runScript(appLauncher.script);
+			break;			
+		case 'create-app':
+			createApplication(path);
+			break;
+		default:
+			abort('You must provide a command: server script create-app');
+	}
+	
+}
+
+/**
+ * Check if express app.js exists
+ **/
+function isLibrary() {	
+	return nodepath.existsSync(path + '/eb');
+}
+
+/**
+ * Check if .bootstrap exists
+ **/
+function isBootstrap() {	
+	return nodepath.existsSync(path + '/.eb-status');		
+}
+
+/**
+ * Run a script
+ * @param appLauncher
+ * Runs by default from path where bootstrap runs via __dirname.
+ */
+function runScript(scriptLauncher) {	
+	var script = require(bootstrapPath + '/scripts/'+ scriptLauncher.name);
+	script.execute(scriptLauncher.params,path);
+}
+
+/**
+ * Process params into array to enable launch
+ * @param param
+ * @param params
+ */
+function processParam(param,depth) {
+	
+	var paramArray = param.split("=");
+	
+	// Run command - must always come after the app
+	if(i == 2) {
+		appLauncher.command = param;
+	}
+	
+	// Server.port
+	if(paramArray[0] == "server.port" && paramArray[1] != undefined) {
+		appLauncher.server.port = paramArray[1];
+	}
+	
+	// 
+	if(appLauncher.command == "script" && i == 3) {
+		appLauncher.script.name = param;
+	}
+	
+	// Script params
+	if(appLauncher.command == 'script' && i > 3) {
+		appLauncher.script.params.push(param);
+	}
+	
+}
+
+/**
+ * Launch a server
+ */
+function runServer(port) {
+
+	// Ensure we run in the local folder of the application
+	process.chdir(path);	
+	var app = express.createServer();
+	require(path + '/app').boot(app);
+	app.listen(port);
+		
+	console.log('\r\n\x1b[36mApplication started on port:\x1b[0m ' + port);
+}
+
+/**
+ * Application Creation - Borrowed from Express scripts
+ **/
+
+/**
+ * Create application at the given directory `path`.
+ *
+ * @param {String} path
+ */
+function createApplicationAt(path) {
+    
+    mkdir(path + '/models');    
+    copy(bootstrapPath + '/models/*',path + '/models');
+    
+    mkdir(path + '/controllers');
+    copy(bootstrapPath + '/controllers/*',path + '/controllers');
+    
+    mkdir(path + '/conf');
+    copy(bootstrapPath + '/conf/*',path + '/conf');
+    
+    mkdir(path + '/utils');
+    copy(bootstrapPath + '/utils/*',path + '/utils');
+    
+    mkdir(path + '/lib');
+	mkdir(path + '/views');	
+	mkdir(path + '/public');
+	mkdir(path + '/logs');
+	
+	copy(bootstrapPath + '/views/*',path + '/views');
+	
+	copy(bootstrapPath + '/public/*',path + '/public');
+	
+	copy(bootstrapPath + '/app.js',path + '/');
+	
+	write(path + '/.eb-status','Created @ ' + new Date());	
+
+}
+
+function createApplication(path) {
+  emptyDirectory(path, function(empty){
+    if (empty) {
+      createApplicationAt(path);
+    } else {
+      confirm('This will over-write the existing application, continue? ', function(ok){
+        if (ok) {
+          process.stdin.destroy();
+          createApplicationAt(path);
+        } else {
+          abort('aborting');
+        }
+      });
+    }
+  });
+};
+
+/**
+ * Check if the given directory `path` is empty.
+ *
+ * @param {String} path
+ * @param {Function} fn
+ */
+
+function emptyDirectory(path, fn) {
+  fs.readdir(path, function(err, files){
+    if (err && 'ENOENT' != err.code) throw err;
+    fn(!files || !files.length);
+  });
+}
+
+/**
+ * echo str > path.
+ *
+ * @param {String} path
+ * @param {String} str
+ */
+
+function write(path, str) {
+  fs.writeFile(path, str);
+  console.log('   \x1b[36mcreate\x1b[0m : ' + path);
+}
+
+/**
+ * Prompt confirmation with the given `msg`.
+ *
+ * @param {String} msg
+ * @param {Function} fn
+ */
+
+function confirm(msg, fn) {
+  prompt(msg, function(val){
+    fn(/^ *y(es)?/i.test(val));
+  });
+}
+
+/**
+ * Prompt input with the given `msg` and callback `fn`.
+ *
+ * @param {String} msg
+ * @param {Function} fn
+ */
+
+function prompt(msg, fn) {
+  // prompt
+  if (' ' == msg[msg.length - 1]) {
+    process.stdout.write(msg);
+  } else {
+    console.log(msg);
+  }
+
+  // stdin
+  process.stdin.setEncoding('ascii');
+  process.stdin.once('data', function(data){
+    fn(data);
+  }).resume();
+}
+
+/**
+ * Mkdir -p.
+ *
+ * @param {String} path
+ * @param {Function} fn
+ */
+
+function mkdir(path, fn) {
+  exec('mkdir -p ' + path, function(err){
+    if (err) throw err;
+    console.log('   \x1b[36mcreate\x1b[0m : ' + path);
+    fn && fn();
+  });
+}
+
+
+/**
+ * cp -r
+ *
+ * @param {String} path
+ * @param {Function} fn
+ */
+
+function copy(from, to, fn) {
+  exec('cp -R ' + from + ' ' + to, function(err){
+    if (err) throw err;
+    console.log('   \x1b[36mCopied\x1b[0m : ' + from + ' to ' + to);
+    fn && fn();
+  });
+}
+
+/**
+ * Exit with the given `str`.
+ *
+ * @param {String} str
+ */
+
+function abort(str) {
+  console.error(str);
+  process.exit(1);
+}

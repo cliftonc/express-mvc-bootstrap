@@ -5,7 +5,7 @@ var ejs = require('ejs')
 /** 
  * Script to create a default controller, requires the model to exist
  */
-exports.execute = function(params) {
+exports.execute = function(params,appPath) {
 		 
 	if(params.length == 0 ) {
 		console.log("You must specifiy a model name to generate the controller against!");
@@ -13,8 +13,8 @@ exports.execute = function(params) {
 	}
 	
 	var modelName = params[0];
-	var modelFile = __dirname + "/../models/" + params[0] + '.js'
-	var controllerFile = __dirname + "/../controllers/" + params[0] + 'Controller.js'
+	var modelFile = appPath + "/models/" + params[0] + '.js'
+	var controllerFile = appPath + "/controllers/" + params[0] + 'Controller.js'
 	var controllerTemplate = __dirname + '/templates/create-controller.template.ejs';
 		
 	// Check if the model exists

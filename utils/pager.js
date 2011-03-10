@@ -40,7 +40,11 @@ exports.render = function(skip,limit,total,path){
 		result = pageLink(path,0,limit,"<<") + result;			
 	}
 	
+	result += "&nbsp;Go To: <input type='text' name='skip' value='' class='pager-page' title='Go to a specific start point, type and enter ...' />";
+	
 	result += "<span style='float: right'>" + (skip + 1) + " to " + (skip + limit) + " of " + (total) + "</span>";
+	
+	
 	
 	return result
 	
