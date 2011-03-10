@@ -67,7 +67,7 @@ function runLauncher(appLauncher) {
 	
 	// Check if this is a bootstrap application?
 	if(!isBootstrap() && appLauncher.command != 'create-app') {
-		console.log('\x1b[1mApplication not bootstrapped - you must run:\x1b[0m eb create-app');
+		console.log('\x1b[1mApplication not bootstrapped - you must run:\x1b[0m eb create-app\r\n');
 		return;
 	}
 	
@@ -108,7 +108,7 @@ function isBootstrap() {
  */
 function runScript(scriptLauncher) {	
 	var script = require(bootstrapPath + '/scripts/'+ scriptLauncher.name);
-	script.execute(scriptLauncher.params);
+	script.execute(scriptLauncher.params,path);
 }
 
 /**
@@ -152,8 +152,8 @@ function runServer(port) {
 	var app = express.createServer();
 	require(path + '/app').boot(app);
 	app.listen(port);
-	console.log('Express app started on port ' + port);	
-
+		
+	console.log('\r\n\x1b[36mApplication started on port:\x1b[0m ' + port);
 }
 
 /**

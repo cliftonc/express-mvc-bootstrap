@@ -5,7 +5,7 @@ var  ejs = require('ejs')
 /** 
  * Script to create a default view, requires the model to exist
  */
-exports.execute = function(params) {
+exports.execute = function(params,appPath) {
 		 
 	if(params.length == 0 ) {
 		console.log("You must specifiy a model name to generate the views against!");
@@ -13,9 +13,8 @@ exports.execute = function(params) {
 	}
 	
 	var modelName = params[0];
-	var modelFile = __dirname + "/../models/" + params[0] + '.js'	
-	
-	var viewFolder = __dirname + "/../views/" + params[0].toLowerCase();
+	var modelFile = appPath + "/models/" + params[0] + '.js'		
+	var viewFolder = appPath + "/views/" + params[0].toLowerCase();
 	
 	var viewIndexTemplate = __dirname + '/templates/create-view.template.index.ejs';
 	var viewEditTemplate = __dirname + '/templates/create-view.template.edit.ejs';

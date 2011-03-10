@@ -29,6 +29,8 @@ exports.boot = function(app){
 
 function bootApplication(app) {
 	
+   console.log('\r\n\x1b[36mLoading application ...\x1b[0m ');
+   
    // launch
   app.use(express.logger({ format: ':method :url :status' }));
   app.use(express.bodyParser());

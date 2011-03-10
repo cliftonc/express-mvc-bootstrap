@@ -4,7 +4,7 @@ var ejs = require('ejs')
 /** 
  * Help file
  */
-exports.execute = function(params) {
+exports.execute = function(params,appPath) {
 		 		
 		if(params.length == 0) {
 			var str = fs.readFileSync(__dirname + '/templates/help.ejs', 'utf8');	
