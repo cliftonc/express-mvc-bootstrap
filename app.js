@@ -13,7 +13,7 @@ var app;
 exports.boot = function(){
   
   //Create our express instance
-	app = express.createServer();	
+  app = express.createServer();	
 	
    // Import configuration
   require(path + '/conf/configuration.js')(app,express);
