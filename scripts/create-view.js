@@ -1,6 +1,8 @@
 var  ejs = require('ejs')
    , fs = require('fs')
-   , path = require('path');
+   , path = require('path')
+   , inflection = require('../lib/inflection');
+
 
 /** 
  * Script to create a default view, requires the model to exist
@@ -12,9 +14,22 @@ exports.execute = function(params,appPath) {
 		return;
 	}
 	
-	var modelName = params[0];
-	var modelFile = appPath + "/models/" + params[0] + '.js'		
-	var viewFolder = appPath + "/views/" + params[0].toLowerCase();
+	/**
+	 * Create the model based on a singular (e.g. people becomes person, users becomes user)
+	 */
+	var modelName = params[0].singularize();	
+	if(modelName != params[0]) {
+		console.log("Using model name as singular not plural: " + modelName);	
+	}
+	
+	// Capitalise
+	modelName = modelName.capitalize();	
+	
+	var modelFile = appPath + "/models/" + modelName + '.js'
+	
+	var controllerName = modelName.pluralize();
+	
+	var viewFolder = appPath + "/views/" + controllerName.toLowerCase();
 	
 	var viewIndexTemplate = __dirname + '/templates/create-view.template.index.ejs';
 	var viewEditTemplate = __dirname + '/templates/create-view.template.edit.ejs';
@@ -48,9 +63,9 @@ exports.execute = function(params,appPath) {
 	var tmpShow = fs.readFileSync(viewShowTemplate, 'utf8');
 	
 	// Render the views
-	var retIndex = ejs.render(tmpIndex, { locals: { name:params[0] },open: "<?",close: "?>" });
-	var retEdit = ejs.render(tmpEdit, { locals: { name:params[0] },open: "<?",close: "?>" });
-	var retShow = ejs.render(tmpShow, { locals: { name:params[0] },open: "<?",close: "?>" });
+	var retIndex = ejs.render(tmpIndex, { locals: { modelName:modelName, controllerName:controllerName },open: "<?",close: "?>" });
+	var retEdit = ejs.render(tmpEdit, { locals: { modelName:modelName, controllerName:controllerName },open: "<?",close: "?>" });
+	var retShow = ejs.render(tmpShow, { locals: { modelName:modelName, controllerName:controllerName },open: "<?",close: "?>" });
 	
 	// Write the file
 	fs.writeFileSync(viewFolder + "/index.html", retIndex,'utf8');

@@ -2,15 +2,19 @@
  * Module dependencies.
  */
 var fs = require('fs'),express = require('express'),
-	mongoose = require('mongoose');
+	 mongoose = require('mongoose'), nodepath = require('path');
 
 var path = __dirname;
+var app;
 
 /**
  * Initial bootstrapping
  */
-exports.boot = function(app){
+exports.boot = function(){
   
+  //Create our express instance
+  app = express.createServer();	
+	
    // Import configuration
   require(path + '/conf/configuration.js')(app,express);
   
@@ -18,6 +22,8 @@ exports.boot = function(app){
   bootApplication(app);
   bootModels(app);
   bootControllers(app);
+  
+  return app;
   
 };
 
@@ -29,7 +35,7 @@ exports.boot = function(app){
 
 function bootApplication(app) {
 	
-   console.log('\r\n\x1b[36mLoading application ...\x1b[0m ');
+  console.log('\r\n\x1b[36mLoading application ...\x1b[0m ');
    
    // launch
   app.use(express.logger({ format: ':method :url :status' }));
@@ -84,7 +90,7 @@ function bootModels(app) {
   fs.readdir(path + '/models', function(err, files){
     if (err) throw err;
     files.forEach(function(file){
-      bootModel(app, file);
+    	bootModel(app, file);
     });
   });
   
@@ -97,7 +103,7 @@ function bootModels(app) {
 function bootControllers(app) {
   fs.readdir(path + '/controllers', function(err, files){
     if (err) throw err;
-    files.forEach(function(file){
+    files.forEach(function(file){    	
     	bootController(app, file);    		
     });
   });

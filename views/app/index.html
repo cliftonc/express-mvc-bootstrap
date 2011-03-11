@@ -8,7 +8,26 @@
  socket.on('disconnect', function(){ alert('disconnect'); }); 
 </script> 
 <h1>Welcome!</h1>
-<p>I built this application to create a template MVC 'style' app that I could then use as the start point for further development.  It depends on:
+<p>The following controllers are available:</p>
+
+<% if (controllers.length) { %>
+  <ul>
+    <% controllers.forEach(function(controller){ %>
+      <li><a href="/<%= controller %>"><%= controller %></a></li>
+    <% }) %>
+  </ul>
+<% } else { %>
+<pre class='code'>
+No controllers available - try 'eb script generate-all ModelName'
+</pre>
+<% } %>
+<br/>
+<pre class='code'>
+You are viewing the default home page - edit views/app/index.html to edit this page!
+</pre>
+<br/>
+<p>Credits:
+<div style='font-size: 0.8em;'>
 	<ul>
 		<li><a href="http://nodejs.org/">Node.js</a>: Amazing javascript asynchronous IO library, install manually.</li>
 		<li><a href="http://www.mongodb.org/">MongoDB</a>: NoSQL Database, install manually.</li>
@@ -23,15 +42,8 @@
 		<li><a href="http://jqueryui.com/">jQuery UI</a>: UI Library</li>
 		<li><a href="http://taitems.tumblr.com/post/482577430/introducing-aristo-a-jquery-ui-theme">jQuery Aristo Template</a>: Fantastic looking jQuery UI Template.</li>
 	</ul>
+</div>
 </p>
-<p>The following controllers are available:</p>
 
-<% if (controllers.length) { %>
-  <ul>
-    <% controllers.forEach(function(controller){ %>
-      <li><a href="/<%= controller %>s"><%= controller %></a></li>
-    <% }) %>
-  </ul>
-<% } %>
 
 <p>Contact me via github : <a href="https://github.com/cliftonc" target="_new">Clifton @ Github</a></p>

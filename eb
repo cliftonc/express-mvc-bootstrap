@@ -21,7 +21,7 @@ require.paths.unshift(__dirname + '/lib');
 /**
  * Explicit module dependencies
  */
-var express = require('express'), fs = require('fs'), nodepath = require('path'), exec = require('child_process').exec;
+var fs = require('fs'), nodepath = require('path'), exec = require('child_process').exec;
 
 /**
  * Paths
@@ -33,7 +33,7 @@ var bootstrapPath = __dirname;
  * Main Command router
  */
 var appLauncher = {
-					command:'server',
+					command:'cluster',
 				    server: { port:3000 },
 				    script: { name:'help',
 				    		  params: []
@@ -72,6 +72,9 @@ function runLauncher(appLauncher) {
 	}
 	
 	switch(appLauncher.command) {
+		case 'cluster':
+			runCluster(appLauncher.server.port);
+			break;
 		case 'server':
 			runServer(appLauncher.server.port);
 			break;
@@ -149,11 +152,21 @@ function runServer(port) {
 
 	// Ensure we run in the local folder of the application
 	process.chdir(path);	
-	var app = express.createServer();
-	require(path + '/app').boot(app);
-	app.listen(port);
-		
+	var app = require(path + '/app').boot();
+	app.listen(port);		
 	console.log('\r\n\x1b[36mApplication started on port:\x1b[0m ' + port);
+}
+
+/**
+ * Launch a cluster
+ */
+function runCluster(port) {
+
+	// Ensure we run in the local folder of the application	
+	process.chdir(path);	
+	require(path + '/app-cluster').boot(port,path);
+	console.log('\r\n\x1b[36mLaunching cluster mode on port: \x1b[0m' + port);
+		
 }
 
 /**
@@ -167,27 +180,34 @@ function runServer(port) {
  */
 function createApplicationAt(path) {
     
-    mkdir(path + '/models');    
-    copy(bootstrapPath + '/models/*',path + '/models');
     
-    mkdir(path + '/controllers');
-    copy(bootstrapPath + '/controllers/*',path + '/controllers');
+    mkdir(path + '/models',function() {
+    	// Disabled as no default models            
+	    // copy(bootstrapPath + '/models/*',path + '/models');
+	});
     
-    mkdir(path + '/conf');
-    copy(bootstrapPath + '/conf/*',path + '/conf');
+    mkdir(path + '/controllers',function() {    
+    	copy(bootstrapPath + '/controllers/*',path + '/controllers');
+    });
     
-    mkdir(path + '/utils');
-    copy(bootstrapPath + '/utils/*',path + '/utils');
+    mkdir(path + '/conf',function() {
+    	copy(bootstrapPath + '/conf/*',path + '/conf');
+    });
+    mkdir(path + '/utils',function() {
+    	copy(bootstrapPath + '/utils/*',path + '/utils');
+    });
     
-    mkdir(path + '/lib');
-	mkdir(path + '/views');	
-	mkdir(path + '/public');
+	mkdir(path + '/views',function() {	
+		copy(bootstrapPath + '/views/*',path + '/views');
+	});
+	mkdir(path + '/public',function() {
+		copy(bootstrapPath + '/public/*',path + '/public');
+	});
+	mkdir(path + '/lib');
 	mkdir(path + '/logs');
+	mkdir(path + '/pids');
 	
-	copy(bootstrapPath + '/views/*',path + '/views');
-	
-	copy(bootstrapPath + '/public/*',path + '/public');
-	
+	copy(bootstrapPath + '/app-cluster.js',path + '/');
 	copy(bootstrapPath + '/app.js',path + '/');
 	
 	write(path + '/.eb-status','Created @ ' + new Date());	

@@ -1,9 +1,9 @@
 <?
-	var modelVariable = name.toLowerCase();
-	var basePath = name.toLowerCase();
-	var basePathPlural = name.toLowerCase() + 's';
+	var modelVariable = modelName.toLowerCase();
+	var basePath = modelName.toLowerCase();
+	var basePathPlural = controllerName.toLowerCase();
 ?>
-<h1>Editing <?= name ?> <%= <?= modelVariable ?>.name %></h1>
+<h1>Editing <?= modelName ?> <%= <?= modelVariable ?>.name %></h1>
 <%- partial('../messages') %>
 <form method="post" action="/<?= modelVariable ?>/<%= <?= modelVariable ?>.id %>">
   <input type="hidden" name="_method" value="put" />
