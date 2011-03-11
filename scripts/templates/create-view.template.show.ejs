@@ -1,9 +1,9 @@
 <?
-	var modelVariable = name.toLowerCase();
-	var basePath = name.toLowerCase();
-	var basePathPlural = name.toLowerCase() + 's';
+	var modelVariable = modelName.toLowerCase();
+	var basePath = modelName.toLowerCase();
+	var basePathPlural = controllerName.toLowerCase();
 ?>
-<h1>Viewing <?= name ?></h1>
+<h1>Viewing <?= basePath ?></h1>
 <script type="text/javascript">
 	$(function(){
 
@@ -59,6 +59,6 @@
 <button class="button-delete" id="<%= <?= modelVariable ?>.id %>"  title="Delete <?= modelVariable ?> ...">
 	Delete
 </button>
-<a class="button-home" href="/<?= basePathPlural ?>" title="List <?= name ?>s">
-	List <?= name ?>s
+<a class="button-home" href="/<?= basePathPlural ?>" title="List <?= controllerName ?>">
+	List <?= controllerName ?>
 </a>

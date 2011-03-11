@@ -181,8 +181,9 @@ function runCluster(port) {
 function createApplicationAt(path) {
     
     
-    mkdir(path + '/models',function() {            
-	    copy(bootstrapPath + '/models/*',path + '/models');
+    mkdir(path + '/models',function() {
+    	// Disabled as no default models            
+	    // copy(bootstrapPath + '/models/*',path + '/models');
 	});
     
     mkdir(path + '/controllers',function() {    

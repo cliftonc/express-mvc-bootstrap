@@ -1,6 +1,7 @@
 var ejs = require('ejs')
    , fs = require('fs')
-   , path = require('path');
+   , path = require('path')
+   , inflection = require('../lib/inflection');
 
 /** 
  * Script to create a default controller, requires the model to exist
@@ -12,9 +13,22 @@ exports.execute = function(params,appPath) {
 		return;
 	}
 	
-	var modelName = params[0];
-	var modelFile = appPath + "/models/" + params[0] + '.js'
-	var controllerFile = appPath + "/controllers/" + params[0] + 'Controller.js'
+	/**
+	 * Create the model based on a singular (e.g. people becomes person, users becomes user)
+	 */
+	var modelName = params[0].singularize();	
+	if(modelName != params[0]) {
+		console.log("Using model name as singular not plural: " + modelName);	
+	}
+	
+	// Capitalise
+	modelName = modelName.capitalize();	
+	
+	var modelFile = appPath + "/models/" + modelName + '.js'
+	
+	var controllerName = modelName.pluralize();
+	
+	var controllerFile = appPath + "/controllers/" + controllerName + 'Controller.js'
 	var controllerTemplate = __dirname + '/templates/create-controller.template.ejs';
 		
 	// Check if the model exists
@@ -43,15 +57,16 @@ exports.execute = function(params,appPath) {
 	
 	// Render the model
 	var ret = ejs.render(str, {
-	  locals: {
-	    name:params[0]
+	  locals: {		
+	    controllerName:controllerName,
+	    modelName:modelName
 	  },open: "<?",close: "?>"
 	});
 	
 	// Write the file
 	fs.writeFileSync(controllerFile, ret,'utf8');
 	
-	console.log('Controller ' + modelName + ' created in controllers/' + modelName + 'Controller.js');
+	console.log('Controller for model ' + modelName + ' created in controllers/' + controllerName + 'Controller.js');
 	
 	
 };

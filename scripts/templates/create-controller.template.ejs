@@ -1,16 +1,16 @@
 /**
- *  <?= name ?> Controller
+ *  <?= controllerName ?> Controller
  *  Created by create-controller script  
  **/
  var mongoose = require('mongoose'),	
-	<?= name ?> = mongoose.model('<?= name ?>'),
+	<?= modelName ?> = mongoose.model('<?= modelName ?>'),
 	pager = require('../utils/pager.js'),
 	ViewTemplatePath;
 
 <?
-	var modelVariable = name.toLowerCase();
-	var basePath = name.toLowerCase();
-	var basePathPlural = name.toLowerCase() + 's';
+	var modelVariable = modelName.toLowerCase();
+	var basePath = modelName.toLowerCase();
+	var basePathPlural = controllerName.toLowerCase();
 ?>
 
 module.exports = function(app,templatePath) {
@@ -34,11 +34,11 @@ function index(req, res, next) {
 	  var to = req.params.to ? req.params.to : 10;
       var total = 0;
       
-      <?= name ?>.count({}, function (err, count) {
+      <?= modelName ?>.count({}, function (err, count) {
     	total = count;  
     	var pagerHtml = pager.render(from,to,total,'/<?= basePathPlural ?>');    	
                   
-		  <?= name ?>.find({})
+		  <?= modelName ?>.find({})
 		  	.sort('name', 1)
 		  	.skip(from).limit(to)
 		  	.find(function (err, <?= basePathPlural ?>) {
@@ -66,7 +66,7 @@ function index(req, res, next) {
   // /<?= basePathPlural ?>/:id
 function show(req, res, next) {	  		  
 		
-	  <?= name ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
+	  <?= modelName ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
 		  
 		  if(err) return next(err);
 		  
@@ -85,7 +85,7 @@ function show(req, res, next) {
   
   // /<?= basePathPlural ?>/:id/edit
 function  edit(req, res, next){
-	  <?= name ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
+	  <?= modelName ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
 		  if(err) return next(err);
 		  res.render(ViewTemplatePath + "/edit",{<?= modelVariable ?>:<?= modelVariable ?>});
 	});
@@ -94,7 +94,7 @@ function  edit(req, res, next){
   // PUT /<?= basePathPlural ?>/:id  
 function update(req, res, next){
     
-    <?= name ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
+    <?= modelName ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
         
     	if (!<?= modelVariable ?>) return next(err);
         
@@ -114,7 +114,7 @@ function update(req, res, next){
               res.send(<?= modelVariable ?>.toObject());
               break;
             default:
-              req.flash('info', '<?= name ?> updated');
+              req.flash('info', '<?= modelName ?> updated');
               res.redirect('/<?= modelVariable ?>/' + req.params.id);
           }
         });
@@ -124,7 +124,7 @@ function update(req, res, next){
 // POST /<?= basePathPlural ?>
 function create(req, res, next){
 	  
-	  var <?= modelVariable ?> = new <?= name ?>(req.body.<?= modelVariable ?>);
+	  var <?= modelVariable ?> = new <?= modelName ?>(req.body.<?= modelVariable ?>);
 	  
 	  <?= modelVariable ?>.save(function(err) {
 	   
@@ -140,7 +140,7 @@ function create(req, res, next){
 	        break;
 
 	      default:
-	    	  req.flash('info','<?= name ?> created');
+	    	  req.flash('info','<?= modelName ?> created');
 	      	  res.redirect('/<?= modelVariable ?>/' + <?= modelVariable ?>.id);
 		 }
 	  });	  
@@ -151,7 +151,7 @@ function create(req, res, next){
 // Always comes in as an ajax request in this model - never redirect
 function destroy(req, res, next){
 	  
-	  <?= name ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
+	  <?= modelName ?>.findById(req.params.id, function(err, <?= modelVariable ?>) {
 	        
 	    	if (!<?= modelVariable ?>) { 
   	    	  	req.flash('error','Unable to locate the <?= modelVariable ?> to delete!');
@@ -164,7 +164,7 @@ function destroy(req, res, next){
     	    	  req.flash('error','There was an error deleting the <?= modelVariable ?>!');
     			  res.send('false');
     		  } else {
-    	    	  req.flash('info','<?= name ?> deleted');
+    	    	  req.flash('info','<?= modelName ?> deleted');
     			  res.send('true');
     		  }    	          
    	      	}); 

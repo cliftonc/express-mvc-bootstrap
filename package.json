@@ -1,7 +1,7 @@
 {
   "name": "express-mvc-bootstrap",
   "description": "Express MVC Application Accelerator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "http://cliftonc.github.com/express-mvc-bootstrap",
   "repository": {
     "type": "git",

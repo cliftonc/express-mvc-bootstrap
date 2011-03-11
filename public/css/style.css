@@ -246,14 +246,20 @@ blockquote:after {
 	content: '\201D';
 }
 
+pre.code {
+	padding: 10px;
+	color: white;
+	background-color: #883434;
+	margin-top: 10px;	
+}
+
 /*--- Shadows ---*/
-code {
+pre.code {
 	-moz-box-shadow: 0 0 3px rgba(0,0,0,.1);
 	-webkit-box-shadow: 0 0 3px rgba(0,0,0,.1);
-	box-shadow: 0 0 3px rgba(0,0,0,.1);
-	color: #666;
+	box-shadow: 0 0 3px rgba(0,0,0,.1);	
 }
-table, form, pre > code {
+table, form {
 	margin-top: 0px;
 	margin-bottom: 12px;
 }
