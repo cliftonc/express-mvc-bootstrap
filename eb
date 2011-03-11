@@ -62,13 +62,13 @@ function runLauncher(appLauncher) {
 	// Check if this is a bootstrap application?
 	if(isLibrary()) {
 		console.log('\x1b[1mDo not run this from the bootstrap library folder, please run from an empty directory or a bootstrapped app, or please run "npm install"\x1b[0m\r\n');		
-		//return;
+		return;
 	}
 	
 	// Check if this is a bootstrap application?
 	if(!isBootstrap() && appLauncher.command != 'create-app') {
 		console.log('\x1b[1mApplication not bootstrapped - you must run:\x1b[0m eb create-app\r\n');
-		//return;
+		return;
 	}
 	
 	switch(appLauncher.command) {

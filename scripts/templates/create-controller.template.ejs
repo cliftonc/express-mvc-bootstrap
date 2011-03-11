@@ -21,8 +21,8 @@ module.exports = {
 	 **/
 	index: function(req, res, next) {
 		  	 
-		  var from = req.params.from ? req.params.from - 1 : 0;
-		  var to = req.params.to ? req.params.to : 10;
+		  var from = req.params.from ? parseInt(req.params.from) - 1 : 0;
+		  var to = req.params.to ? parseInt(req.params.to) : 10;
 	      var total = 0;
 	      
 	      <?= modelName ?>.count({}, function (err, count) {
