@@ -43,8 +43,8 @@ function bootApplication(app) {
   app.use(express.methodOverride());
   app.use(express.cookieParser());
   app.use(express.session({ secret: 'helloworld' }));
+  app.use(express.static(path + '/public'));  // Before router to enable dynamic routing
   app.use(app.router);
-  app.use(express.static(path + '/public'));
 
   // Example 500 page
   app.error(function(err, req, res){
@@ -104,9 +104,13 @@ function bootControllers(app) {
   fs.readdir(path + '/controllers', function(err, files){
     if (err) throw err;
     files.forEach(function(file){    	
-    	bootController(app, file);    		
+    	// bootController(app, file);    		
     });
+	
+
   });
+  
+  require(path + '/controllers/AppController')(app);			// Include
   
 }
 
@@ -126,6 +130,6 @@ function bootController(app, file) {
     	template = name.replace('Controller','').toLowerCase();									// template folder for html - remove the ...Controller part.
 	
 	// Include the controller
-	require(controller)(app,template);			// Include
+	// require(controller)(app,template);			// Include
 	
 }
