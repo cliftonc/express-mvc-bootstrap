@@ -10,8 +10,8 @@ var app;
 /**
  * Initial bootstrapping
  */
-exports.boot = function(){
-  
+exports.boot = function(params){
+	
   //Create our express instance
   app = express.createServer();	
 	
@@ -33,12 +33,10 @@ exports.boot = function(){
  *  enable modification by env.
  */
 
-function bootApplication(app) {
-	
-  console.log('\r\n\x1b[36mLoading application ...\x1b[0m ');
+function bootApplication(app) {	 
    
    // launch
-  app.use(express.logger({ format: ':method :url :status' }));
+  // app.use(express.logger({ format: ':method :url :status' }));
   app.use(express.bodyParser());
   app.use(express.methodOverride());
   app.use(express.cookieParser());
@@ -50,7 +48,7 @@ function bootApplication(app) {
   app.error(function(err, req, res){
     res.render('500',{error:err});
   });
-
+  
   // Example 404 page via simple Connect middleware
   app.use(function(req, res){
     res.render('404');
