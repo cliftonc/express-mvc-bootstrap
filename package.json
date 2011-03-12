@@ -17,7 +17,7 @@
     "views": "./views",
     "public": "./public",
     "scripts": "./scripts",
-    "utils": "./utils"    
+    "utils": "./utils",    
     "tests": "./tests"    
   },
   "repository" :
