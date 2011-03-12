@@ -2,7 +2,8 @@
 
 /**
  * ExpressJs MVC Bootstrap
- * @Params - cmd - server | script | params
+ * @Params - cmd - serve
+ r | script | params
  */
  
  
@@ -10,7 +11,7 @@
  * Framework version.
  */
 
-var version = '0.1.1';
+var version = '0.1.2';
  
 
 /**
@@ -62,16 +63,19 @@ function runLauncher(appLauncher) {
 	// Check if this is a bootstrap application?
 	if(isLibrary()) {
 		console.log('\x1b[1mDo not run this from the bootstrap library folder, please run from an empty directory or a bootstrapped app, or please run "npm install"\x1b[0m\r\n');		
-		//return;
+		return;
 	}
 	
 	// Check if this is a bootstrap application?
 	if(!isBootstrap() && appLauncher.command != 'create-app') {
 		console.log('\x1b[1mApplication not bootstrapped - you must run:\x1b[0m eb create-app\r\n');
-		//return;
+		return;
 	}
 	
 	switch(appLauncher.command) {
+		case 'test':
+			runTests(appLauncher.script);
+			break;		
 		case 'cluster':
 			runCluster(appLauncher.server.port);
 			break;
@@ -85,7 +89,8 @@ function runLauncher(appLauncher) {
 			createApplication(path);
 			break;
 		default:
-			abort('You must provide a command: server script create-app');
+			appLauncher.command = 'script';			
+			runScript(appLauncher.script);			
 	}
 	
 }
@@ -134,7 +139,7 @@ function processParam(param,depth) {
 	}
 	
 	// 
-	if(appLauncher.command == "script" && i == 3) {
+	if((appLauncher.command == "script" || appLauncher.command == "test") && i == 3) {
 		appLauncher.script.name = param;
 	}
 	
@@ -144,6 +149,29 @@ function processParam(param,depth) {
 	}
 	
 }
+
+/**
+ * Run expresso tests
+ */
+function runTests(appLauncher) {
+
+	var test = appLauncher.name ? appLauncher.name : 'all';
+			
+	if(test == 'help') {  // This is the default - ugly I know!
+		test = ['unit','integration','functional'];
+	} else {
+		test = [test];
+	}
+	
+	test.forEach(function (item, index) {
+		exec('expresso -I . -s tests/' + item + '/* ', { timeout: 60000, cwd:path }, function (error, stdout, stderr) {
+			console.log("Finished test: " + item);
+	    	console.log(stdout);
+	    	console.log(stderr);
+    	});
+    });
+}
+
 
 /**
  * Launch a server
@@ -206,6 +234,21 @@ function createApplicationAt(path) {
 	
 	mkdir(path + '/lib',function() {
     	copy(bootstrapPath + '/lib/*',path + '/lib');
+    });
+    
+    mkdir(path + '/tests',function() {
+    
+    	mkdir(path + '/tests/unit',function() {
+    		copy(bootstrapPath + '/tests/unit/*',path + '/tests/unit');
+    	});
+    	mkdir(path + '/tests/integration',function() {
+    		copy(bootstrapPath + '/tests/integration/*',path + '/tests/integration');
+    	});
+    	mkdir(path + '/tests/functional',function() {
+    		copy(bootstrapPath + '/tests/functional/*',path + '/tests/functional');
+    	});
+    	
+    	
     });
     
 	mkdir(path + '/logs');

@@ -37,7 +37,7 @@ exports.render = function(skip,limit,total,path){
 	
 	if(currentPage > 1) {
 		result = pageLink(path,(skip - limit + 1),limit,"<") + result;
-		result = pageLink(path,0,limit,"<<") + result;			
+		result = pageLink(path,1,limit,"<<") + result;			
 	}
 	
 	result += "&nbsp;Go To: <input id='pagerGoto' type='text' name='skip' value='' class='pager-page' title='Go to a specific start point, type and enter ...' />";
