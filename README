@@ -25,7 +25,7 @@ But I've included in this project:
 TO RUN:
 
 * Install all the dependencies above.
-* npm install express-mvc-bootsrap
+* npm install express-mvc-boostrap
 * Go to a nice clean folder
 * Run 'eb create-app'
 * Run 'eb'
@@ -37,8 +37,9 @@ OTHER COMMANDS:
 * eb script generate-all HelloWorld <Wrapper for 3 commands below>
 * eb script create-model HelloWorld <Creates a model>
 * eb script create-controller HelloWorld <Creates a controller>
-* eb script create-views HelloWorld <Creates views>
-* eb sever server.port=3000 <Runs server on different port>
+* eb script create-view HelloWorld <Creates views>
+* eb script create-test HelloWorld <Creates tests>
+* eb server server.port=3000 <Runs server on different port>
 * eb create-app <Creates a new app>
 
 TODO: 
