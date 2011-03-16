@@ -25,7 +25,7 @@ But I've included in this project:
 TO RUN:
 
 * Install all the dependencies above.
-* npm install express-mvc-boostrap
+* npm install express-mvc-bootstrap
 * Go to a nice clean folder
 * Run 'eb create-app'
 * Run 'eb'
