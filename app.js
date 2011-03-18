@@ -131,3 +131,10 @@ function bootController(app, file) {
 	// require(controller)(app,template);			// Include
 	
 }
+
+// allow normal node loading if appropriate
+if (!module.parent) {
+  exports.boot().listen(3000);
+  console.log("Express server %s listening on port %d", express.version, app.address().port)
+}
+
