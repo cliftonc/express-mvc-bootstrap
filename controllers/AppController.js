@@ -75,11 +75,14 @@ function router(req, res, next) {
 		}		
 		
 	}
-			
-	var controllerLibrary = require('./' + controller.capitalize() + 'Controller');			
-	if(typeof controllerLibrary[fn] === 'function') {
-		controllerLibrary[fn](req,res,next);		
-	} else {
+	try {			
+		var controllerLibrary = require('./' + controller.capitalize() + 'Controller');			
+		if(typeof controllerLibrary[fn] === 'function') {
+			controllerLibrary[fn](req,res,next);		
+		} else {
+			res.render('404');
+		}	
+	} catch (e) {
 		res.render('404');
 	}
 	  	
