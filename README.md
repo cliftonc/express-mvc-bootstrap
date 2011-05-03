@@ -40,26 +40,26 @@ I built this application to create a template MVC `style` app that I could then 
 
 <!---->
 
-    // on osx with brew
-    brew update
-    brew install node
+      // on osx with brew
+      brew update
+      brew install node
     
-    // build from source
-    git clone git://github.com/joyent/node.git
-    ./configure
-    make
-    make install
+      // build from source
+      git clone git://github.com/joyent/node.git
+      ./configure
+      make
+      make install
   
   - Ininstall mongodb
   
 <!---->
 
-    // on osx with brew
-    brew update
-    brew install mongodb
+      // on osx with brew
+      brew update
+      brew install mongodb
     
-    // create db folder
-    mkdir -p /usr/db/
+      // create db folder
+      mkdir -p /usr/db/
 
 > For more installation detail please see [this](http://www.mongodb.org/display/DOCS/Quickstart)
     
@@ -73,15 +73,15 @@ I built this application to create a template MVC `style` app that I could then 
 
 <!---->
     
-    // install executable package globally
-    npm install express-mvc-bootstrap -g
+      // install executable package globally
+      npm install express-mvc-bootstrap -g
     
-    // make project folder and go to that folder
-    mkdir /path/to/porject
-    cd /path/to/porject
+      // make project folder and go to that folder
+      mkdir /path/to/porject
+      cd /path/to/porject
     
-    // install packages locally to be `require();`
-    npm install socket.io should mongoose expresso qs mime ejs connect express express-mvc-bootstrap
+      // install packages locally to be `require();`
+      npm install socket.io should mongoose expresso qs mime ejs connect express express-mvc-bootstrap
     
 * Go to a nice clean folder
 * Run 'eb create-app'
@@ -93,43 +93,43 @@ I built this application to create a template MVC `style` app that I could then 
   
 <!---->
 
-    // create app 
-    eb create-app
+      // create app 
+      eb create-app
     
-    // running mongodb
-    mongod --dbpath /usr/db/
+      // running mongodb
+      mongod --dbpath /usr/db/
     
-    // running server
-    eb
+      // running server
+      eb
     
   - Browse to http://localhost:3000
 
 
 ## Commands:
     
-    // Shows help
-    eb script
+      // Shows help
+      eb script
     
-    // Wrapper for 3 commands below
-    eb script generate-all HelloWorld
+      // Wrapper for 3 commands below
+      eb script generate-all HelloWorld
     
-    // Creates a model
-    eb script create-model HelloWorld 
+      // Creates a model
+      eb script create-model HelloWorld 
     
-    // Creates a controller
-    eb script create-controller HelloWorld
+      // Creates a controller
+      eb script create-controller HelloWorld
     
-    // Creates views
-    eb script create-view HelloWorld
+      // Creates views
+      eb script create-view HelloWorld
     
-    // Creates tests
-    eb script create-test HelloWorld
+      // Creates tests
+      eb script create-test HelloWorld
     
-    // Runs server on different port
-    eb server server.port=3000
+      // Runs server on different port
+      eb server server.port=3000
     
-    // Creates a new app
-    eb create-app
+      // Creates a new app
+      eb create-app
 
 ## TODO: 
 Build some amazing apps!
