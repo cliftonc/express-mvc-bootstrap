@@ -45,8 +45,9 @@ function bootApplication(app) {
   app.use(app.router);
 
   // Example 500 page
-  app.error(function(err, req, res){
-    res.render('500',{error:err});
+  app['error'](function(err, req, res){
+    console.log('Internal Server Error: ' + err.message);
+    res.render('500');
   });
   
   // Example 404 page via simple Connect middleware
