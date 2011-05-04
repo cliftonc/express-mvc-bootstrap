@@ -81,12 +81,7 @@ I built this application to create a template MVC `style` app that I could then 
       cd /path/to/porject
     
       // install packages locally to be `require();`
-      npm install socket.io should mongoose expresso qs mime ejs connect express express-mvc-bootstrap
-    
-* Go to a nice clean folder
-* Run 'eb create-app'
-* Run 'eb'
-* browse to http://localhost:3000
+      npm install socket.io should mongoose log cluster expresso qs mime ejs connect express express-mvc-bootstrap
 
 ## Setup
   - In you project folder run
