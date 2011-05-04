@@ -59,7 +59,7 @@ I built this application to create a template MVC `style` app that I could then 
       brew install mongodb
     
       // create db folder
-      mkdir -p /usr/db/
+      mkdir -p /usr/local/db/
 
 > For more installation detail please see [this](http://www.mongodb.org/display/DOCS/Quickstart)
     
@@ -92,7 +92,7 @@ I built this application to create a template MVC `style` app that I could then 
       eb create-app
     
       // running mongodb
-      mongod --dbpath /usr/db/
+      mongod --dbpath /usr/local/db/
     
       // running server
       eb
