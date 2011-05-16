@@ -63,7 +63,7 @@ I built this application to create a template MVC `style` app that I could then 
 
 > For more installation detail please see [this](http://www.mongodb.org/display/DOCS/Quickstart)
     
-  - Ininstall npm
+  - Install npm
 
 <!---->
 
@@ -77,8 +77,8 @@ I built this application to create a template MVC `style` app that I could then 
       npm install express-mvc-bootstrap -g
     
       // make project folder and go to that folder
-      mkdir /path/to/porject
-      cd /path/to/porject
+      mkdir /path/to/project
+      cd /path/to/project
     
       // install packages locally to be `require();`
       npm install socket.io should mongoose log cluster expresso qs mime ejs connect express express-mvc-bootstrap
