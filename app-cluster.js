@@ -40,7 +40,7 @@ exports.boot = function(port,path){
 		.use(cluster.logger(path + '/logs'))	    
 		.use(cluster.pidfiles(path + '/pids'))
 	  .in('all')
-	    .listen(port);
+	    .listen(parseInt(port));
 	  
 };
 
