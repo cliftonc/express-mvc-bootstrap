@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/cliftonc/express-mvc-bootstrap.png)](http://travis-ci.org/cliftonc/express-mvc-bootstrap)
 # Express MVC Bootstrap
 
 A MVC boilerplate for Express.js
