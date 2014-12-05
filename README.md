@@ -1,3 +1,6 @@
+
+# THIS PROJECT IS NO LONGER MAINTAINED, TRY THIS ONE:  https://github.com/niftylettuce/eskimo
+
 # Express MVC Bootstrap
 
 A MVC boilerplate for Express.js
