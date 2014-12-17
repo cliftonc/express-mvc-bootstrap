@@ -99,14 +99,14 @@ function runLauncher(appLauncher) {
  * Check if express app.js exists
  **/
 function isLibrary() {	
-	return nodepath.existsSync(path + '/eb');
+	return nodefs.existsSync(path + '/eb');
 }
 
 /**
  * Check if .bootstrap exists
  **/
 function isBootstrap() {	
-	return nodepath.existsSync(path + '/.eb-status');		
+	return nodefs.existsSync(path + '/.eb-status');		
 }
 
 /**
